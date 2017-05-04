@@ -1,0 +1,9 @@
+@charset "UTF-8";
+@import "./spritesmith-generated/sprite";
+@include sprites($spritesheet-sprites);
+
+//body{
+//  display: none;}
+body{
+  background: url(ico/facebook.png);
+}
