@@ -1,5 +1,4 @@
 import React from 'react';
-import './Content.scss';
 
 
 class Content extends React.Component {

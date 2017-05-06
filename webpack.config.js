@@ -56,8 +56,7 @@ var config = {
                 css: path.resolve(__dirname, 'src/spritesmith-generated/sprite.scss')
             },
             apiOptions: {
-                // cssImageRef: "./spritesmith-generated/sprite.png"
-                cssImageRef: "../spritesmith-generated/sprite.png"
+                cssImageRef: "./spritesmith-generated/sprite.png"
             }
         })
     ]

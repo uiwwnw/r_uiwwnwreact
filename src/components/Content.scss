@@ -1,5 +1,0 @@
-@import "../spritesmith-generated/sprite";
-@include sprites($spritesheet-sprites);
-h2{
-  @extend .band;
-}
