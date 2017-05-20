@@ -30,5 +30,8 @@
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.4.5",
     "webpack-spritesmith": "^0.3.3"
+  },
+  "devDependencies": {
+    "extract-text-webpack-plugin": "^2.1.0"
   }
 }

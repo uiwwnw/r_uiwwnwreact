@@ -1,12 +1,18 @@
-var webpack = require('webpack');
-var path = require('path');
-var SpritesmithPlugin = require('webpack-spritesmith');
+const webpack = require('webpack');
+const path = require('path');
+const SpritesmithPlugin = require('webpack-spritesmith');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: process.env.NODE_ENV === "development"
+});
 
 var config = {
     context: path.resolve(__dirname, 'src'),
     entry: './index.js',
     output: {
-        path:__dirname,
+        path: __dirname,
         filename: './dist/bundle.js'
     },
 
@@ -15,12 +21,22 @@ var config = {
         port: 7777,
         contentBase: __dirname + 'dist/'
     },
-
+    devtool: "source-map", // any "source-map"-like devtool is possible
     module: {
         loaders: [
             {
                 test: /\.scss$/,
-                loader: ['style-loader', 'css-loader', 'sass-loader']
+                use: [{
+                    loader: "style-loader"
+                }, {
+                    loader: "css-loader", options: {
+                        sourceMap: true
+                    }
+                }, {
+                    loader: "sass-loader", options: {
+                        sourceMap: true
+                    }
+                }]
             }
             , {
                 test: /\.png$/,
@@ -59,7 +75,9 @@ var config = {
                 cssImageRef: "./spritesmith-generated/sprite.png"
             }
         })
+        ,extractSass
     ]
+
 };
 if (process.env.NODE_ENV === 'production') {
     config.devtool = false;
@@ -70,6 +88,7 @@ if (process.env.NODE_ENV === 'production') {
             'process.env': {NODE_ENV: JSON.stringify('production')}
         })
     ];
-};
+}
+
 
 module.exports = config;

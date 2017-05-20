@@ -6,8 +6,11 @@ class App extends React.Component {
     render(){
         return  (
             <div>
-                <Header/>
-                <Content/>
+                {/*<Header/>*/}
+                {/*<Content/>*/}
+                <header>
+
+                </header>
             </div>
         );
     }
