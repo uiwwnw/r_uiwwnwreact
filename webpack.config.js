@@ -1,11 +1,11 @@
 const webpack = require('webpack');
 const path = require('path');
 const SpritesmithPlugin = require('webpack-spritesmith');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
-    filename: "[name].[contenthash].css",
-    disable: process.env.NODE_ENV === "development"
+    filename: '[name].[contenthash].css',
+    disable: process.env.NODE_ENV === 'development'
 });
 
 var config = {
@@ -21,19 +21,19 @@ var config = {
         port: 7777,
         contentBase: __dirname + 'dist/'
     },
-    devtool: "source-map", // any "source-map"-like devtool is possible
+    devtool: 'source-map', // any 'source-map'-like devtool is possible
     module: {
         loaders: [
             {
                 test: /\.scss$/,
                 use: [{
-                    loader: "style-loader"
+                    loader: 'style-loader'
                 }, {
-                    loader: "css-loader", options: {
+                    loader: 'css-loader', options: {
                         sourceMap: true
                     }
                 }, {
-                    loader: "sass-loader", options: {
+                    loader: 'sass-loader', options: {
                         sourceMap: true
                     }
                 }]
@@ -53,13 +53,17 @@ var config = {
                     presets: ['es2015', 'react']
                 }
             }
+            , {
+                test: /\.(woff|woff2|ttf|eot|svg)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/,
+                loader: 'url-loader?name=./dist/img/[hash].[ext]'
+            }
         ]
     },
     resolve: {
         //webpack 1:
-        // modulesDirectories: ["node_modules", "spritesmith-generated"],
+        // modulesDirectories: ['node_modules', 'spritesmith-generated'],
         //webpack 2:
-        modules: ["node_modules", "spritesmith-generated"]
+        modules: ['node_modules', 'spritesmith-generated']
     },
     plugins: [
         new SpritesmithPlugin({
@@ -72,20 +76,21 @@ var config = {
                 css: path.resolve(__dirname, 'src/spritesmith-generated/sprite.scss')
             },
             apiOptions: {
-                cssImageRef: "./spritesmith-generated/sprite.png"
+                cssImageRef: './spritesmith-generated/sprite.png'
             }
         })
-        ,extractSass
+        , extractSass
     ]
 
 };
+
 if (process.env.NODE_ENV === 'production') {
     config.devtool = false;
     config.plugins = [
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({comments: false}),
+        new webpack.optimize.UglifyJsPlugin({ comments: false }),
         new webpack.DefinePlugin({
-            'process.env': {NODE_ENV: JSON.stringify('production')}
+            'process.env': { NODE_ENV: JSON.stringify('production') }
         })
     ];
 }

@@ -1,10 +1,205 @@
 @charset "UTF-8";
 @import "./spritesmith-generated/sprite";
+@import "./fontello/css/animation.css";
+@import "./fontello/css/fontello.css";
 @include sprites($spritesheet-sprites);
+$headerHeight: 4.4rem;
+$footerHeight: 4.4rem;
+$gray: #ededed;
+%fwb {
+    font-weight: 700;
+}
 
-//body{
-//  display: none;}
-body{
-  background: url(ico/facebook.png);
-  background-color: #fff;
+%fwn {
+    font-weight: 400;
+}
+
+%fwl {
+    font-weight: 200;
+}
+
+%fwt {
+    font-weight: 100;
+}
+
+%ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+%vam {
+    white-space: nowrap;
+    >* {
+        display: inline-block;
+        vertical-align: middle;
+        white-space: normal;
+    }
+    &:before {
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+        min-height: inherit;
+        content: '';
+    }
+}
+
+%act {
+    position: relative;
+    &:after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        content: '';
+    }
+    &:active {
+        @keyframes active_after {
+            0% {
+                background: rgba(0, 0, 0, 0);
+            }
+            80% {
+                background: rgba(0, 0, 0, 0.05);
+            }
+            100% {
+                background: rgba(0, 0, 0, 0);
+            }
+        }
+        animation: active .45s;
+        &:after {
+            animation: active_after .45s;
+        }
+    }
+}
+
+// tag setting 
+button {
+    @extend %act;
+    padding: 0;
+    border: 0;
+    background: none;
+}
+
+// layout
+html {
+    font-size: 62.5%;
+    height: 100%;
+}
+
+body {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    font-size: 1.2rem;
+    background-color: #fff;
+    >div {
+        height: 100%;
+    }
+}
+
+// common
+div[data-reactroot] {
+    overflow: hidden;
+    height: 100%;
+    >* {
+        width: 100%;
+        float: left;
+        &.react-tabs {
+            height: calc(100% - #{$headerHeight + $footerHeight});
+        }
+    }
+}
+
+.header {
+    @extend %vam;
+    height: $headerHeight;
+    box-sizing: border-box;
+    font-size: 1.8rem;
+    border-bottom: 1px solid $gray;
+    button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: $headerHeight;
+        height: $headerHeight;
+        &.right {
+            left: auto;
+            right: 0;
+        }
+    }
+    h1 {
+        @extend %fwn;
+        @extend %ellipsis;
+        width: 100%;
+        margin: 0;
+        padding: 0 4.4rem;
+        text-align: center;
+        box-sizing: border-box;
+        font-size: 2rem;
+    }
+}
+
+nav {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    box-sizing: border-box;
+    transition: .2s background;
+    background: rgba(0, 0, 0, 0.2);
+    &:empty {
+        right: 100%;
+        background: rgba(0, 0, 0, 0);
+    }
+    div {
+        width: 70%;
+        height: 100%;
+        background: #fff;
+    }
+}
+
+.content {
+    height: 100%;
+}
+
+// module
+.react-tabs__tab-list {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    height: $footerHeight;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid $gray;
+    >* {
+        @extend %act;
+        display: table-cell;
+        height: 100%;
+        margin: 0 1px;
+        color: rgba(0, 0, 0, 0.5);
+        text-align: center;
+        vertical-align: middle;
+        list-style: none;
+        font-size: 1.6rem;
+        background: #fff;
+        &+* {
+            border-left: 1px solid $gray;
+        }
+        i {
+            display: block;
+            color: rgba(0, 0, 0, 0.5);
+        }
+        &[aria-selected="true"] {
+            color: #333;
+            i {
+                color: #333;
+            }
+        }
+    }
 }
