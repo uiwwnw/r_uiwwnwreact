@@ -20,7 +20,7 @@ module.exports = {
     port: 3300,
     hot: true
   },
-  mode: 'production',
+  mode: 'development',
   module: {
     rules: [
       {

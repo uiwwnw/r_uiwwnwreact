@@ -8,7 +8,9 @@ export default class App extends React.Component {
     render() {
         return (
             <main>
-                dsdasdassajdks
+                <div>
+                    안녕
+                </div>
             </main>
         );
     }
