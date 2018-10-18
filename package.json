@@ -1,6 +1,6 @@
 {
   "name": "uiwwnw_react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "https://github.com/uiwwnw/uiwwnw-react.git",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/uiwwnw/uiwwnw-react"
   },
-  "author": "",
+  "author": "uiwwnw(uiwwnw@icloud.com)",
   "license": "ISC",
   "dependencies": {
     "babel": "^6.23.0",
@@ -20,15 +20,16 @@
     "babel-loader": "^7.1.5",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
-    "node-sass": "^4.9.3",
+    "node-sass": "^4.9.4",
     "path": "^0.12.7",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-jsx": "^1.0.0",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
+    "styled-components": "^4.0.2",
     "url-loader": "^1.1.2",
-    "webpack": "^4.20.2"
+    "webpack": "^4.21.0"
   },
   "devDependencies": {
     "webpack-cli": "^3.1.2",
