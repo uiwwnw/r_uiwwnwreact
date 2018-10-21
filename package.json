@@ -25,6 +25,8 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-jsx": "^1.0.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.1",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
     "styled-components": "^4.0.2",
